@@ -19,7 +19,7 @@ const Dashboard = () => {
           throw new Error('No token found');
         }
 
-        const response = await axios.get(`${baseUrl}/dashboardb`, {
+        const response = await axios.get(`${baseUrl}/dashboard`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserData(response.data);
