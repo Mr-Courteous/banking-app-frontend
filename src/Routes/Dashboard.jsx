@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import baseUrl from './config'; 
+import baseUrl from './config';
+import Header from '../Components/Header';
+// import Footer from '../Components/Footer';
 
 
 const Dashboard = () => {
@@ -40,6 +42,8 @@ const Dashboard = () => {
           <div className="loading"></div>
         </div>
       )}
+
+      <Header />
       <div className="dashboard-container">
         <h2>Dashboard</h2>
         {errorMessage && <p className="error-message-dashboard">{errorMessage}</p>}
@@ -65,6 +69,7 @@ const Dashboard = () => {
           <Link to="/generate-visual-card" className="action-button">Generate Visual Card</Link>
         </div>
       </div>
+
     </>
   );
 };

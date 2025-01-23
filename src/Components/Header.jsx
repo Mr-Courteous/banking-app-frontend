@@ -10,7 +10,7 @@ function Header() {
 
             <div className="header">
 
-                <img className="logo" src="Images/WhatsApp Image 2024-12-26 at 12.52.58 PM.jpeg" alt="" />
+                <img className="logo" src="images/first-bank-nigeria-icon-2048x2048-l0brwxy1.png" alt="" />
 
 
 
@@ -32,13 +32,13 @@ function Header() {
                             <a className="nav-link active" href="/">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/about" >About</a>
+                            <a className="nav-link" href="/register" >Register</a>
                         </li>
                         {/* <li className="nav-item">
                             <a className="nav-link" href="/services">Services</a>
                         </li> */}
                         <li className="nav-item">
-                            <a className="nav-link" href="/portfolio">Portfolio</a>
+                            <a className="nav-link" href="/Login">Login</a>
                         </li>
                         {/* <li className="nav-item">
                             <a className="nav-link" href="/contact">Contact</a>
@@ -58,13 +58,13 @@ function Header() {
                         <a className="mobile-nav-link" href="/">Home</a>
                     </li>
                     <li className="mobile-nav-item">
-                        <a className="mobile-nav-link" href="/about">About</a>
+                        <a className="mobile-nav-link" href="/register">Register</a>
                     </li>
                     {/* <li className="mobile-nav-item">
                         <a className="mobile-nav-link" href="/services">Services</a>
                     </li> */}
                     <li className="mobile-nav-item">
-                        <a className="mobile-nav-link" href="/portfolio">Portfolio</a>
+                        <a className="mobile-nav-link" href="/login">Login</a>
                     </li>
                     {/* <li className="mobile-nav-item">
                         <a className="mobile-nav-link" href="/contact">Contact</a>

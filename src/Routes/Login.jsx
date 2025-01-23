@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // For navigation after login
 import Header from '../Components/Header';
 import baseUrl from './config';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -28,17 +30,24 @@ const Login = () => {
       });
 
       console.log('Login successful:', response.data);
+      toast.success("Good login")
 
       if (response.data.token) {
         const token = response.data.token;
         localStorage.setItem('authToken', token);
+        // toast.success(response.data)
+        toast.success("Good login")
+
         navigate('/dashboard'); // Redirect to dashboard after successful login
         setErrorMessage(''); // Clear any previous error messages
       } else {
         setErrorMessage(response.data.message || 'An error occurred. Please try again.');
+        toast.error(response?.data.message)
+
       }
     } catch (error) {
-      console.error('Error logging in:', error.response?.data?.error);
+      console.error('Error logging in:', error.response?.data?.message);
+      toast.error(error.response?.data.message)
       setErrorMessage(error.response?.data.message);
     } finally {
       setIsLoading(false);
@@ -82,6 +91,9 @@ const Login = () => {
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
       </div>
+      
+      <Toaster position='top-center' />
+
     </>
   );
 };

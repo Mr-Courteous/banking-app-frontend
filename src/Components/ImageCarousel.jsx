@@ -113,7 +113,9 @@ function Carousel() {
 
         <div className='position'>
 
-          <p className='caro-text'>
+          <p style={{
+            color: "black"
+          }} className='caro-text'>
             EDUCATION IS NOT EXPENSIVE. ENROLL YOUR WARD NOW. DO NOT TRY IGNORANCE.         </p>
 
           <div style={{
@@ -125,13 +127,13 @@ function Carousel() {
 
           }}>            <a href="/register">
 
-          <button className='know-more'> REGISTER </button>
-        </a>
-        <a href="/login">
+              <button className='know-more'> REGISTER </button>
+            </a>
+            <a href="/login">
 
-          <button className='contact-us'> LOGIN </button>
+              <button className='contact-us'> LOGIN </button>
 
-        </a>
+            </a>
 
 
           </div>
@@ -154,7 +156,10 @@ function Carousel() {
           <div style={{
             marginTop: "10px",
           }}>
-            <p className='caro-text'>
+            <p style={{
+              color: "black"
+            }}
+              className='caro-text'>
               EXPERIENCE THE DIFFERENCE. SCHEDULE A TOUR.
               JOIN OUR COMMUNITY OF LEARNERS.
             </p>
@@ -174,13 +179,13 @@ function Carousel() {
 
           }}>              <a href="/register">
 
-          <button className='know-more'> REGISTER </button>
-        </a>
-        <a href="/login">
+              <button className='know-more'> REGISTER </button>
+            </a>
+            <a href="/login">
 
-          <button className='contact-us'> LOGIN </button>
+              <button className='contact-us'> LOGIN </button>
 
-        </a>
+            </a>
           </div>
 
 

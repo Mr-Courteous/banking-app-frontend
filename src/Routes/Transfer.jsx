@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import baseUrl from './config'; 
+import baseUrl from './config';
+import Header from '../Components/Header';
 
 
 const Transfer = () => {
@@ -21,16 +22,19 @@ const Transfer = () => {
                 throw new Error('No token found');
             }
 
+            // Convert amount to a number before sending the request
+            const amountAsNumber = parseFloat(amount); // Assuming amount is stored as a string
+
             const response = await axios.post(`${baseUrl}/transfer`, {
                 recipientAccountNumber,
-                amount,
+                amount: amountAsNumber, // Send amount as a number
             }, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             setTransferSuccess(true);
             setRecipientAccountNumber(''); // Clear fields after successful transfer
-            setAmount(0);
+            setAmount(0); // Reset amount to 0
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
@@ -43,11 +47,16 @@ const Transfer = () => {
     };
     return (
 
-        <>  {isLoading && ( // Render the loading component only when isLoading is true
-            <div className="loading-state">
-                <div className="loading"></div>
-            </div>
-        )}
+        <>
+
+
+            {isLoading && ( // Render the loading component only when isLoading is true
+                <div className="loading-state">
+                    <div className="loading"></div>
+                </div>
+            )}
+
+            <Header />
             <div className="transfer-container">
                 <h2>Transfer Funds</h2>
                 <form onSubmit={(e) => e.preventDefault()}>
@@ -80,6 +89,7 @@ const Transfer = () => {
                 {errorMessage && <p className="error-message-dashboard">{errorMessage}</p>}
                 {transferSuccess && <p className="success-message">Transfer successful!</p>}
             </div>
+
         </>
 
     );

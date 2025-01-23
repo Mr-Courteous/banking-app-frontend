@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Components/Header';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import baseUrl from './config'; 
+import baseUrl from './config';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 
 const RegistrationForm = () => {
@@ -48,7 +50,8 @@ const RegistrationForm = () => {
         setIsLoading(true); // Set loading state to true before request
         try {
             const response = await axios.post(`${baseUrl}/send-otp`, { email });
-            console.log('OTP request sent:', response.data); // For debugging
+            console.log('OTP request sent:', response.data.message); // For debugging
+            toast.success("Email verification sent")
             setErrorMessage(''); // Clear any previous error messages
         } catch (error) {
             console.error('Error requesting OTP:', error);
@@ -74,6 +77,7 @@ const RegistrationForm = () => {
         } catch (error) {
             console.error('Error verifying OTP:', error);
             setErrorMessage('An error occurred while verifying OTP. Please try again.');
+            toast.error(error.message)
         } finally {
             setIsLoading(false); // Set loading state to false after request completes
         }
@@ -81,29 +85,32 @@ const RegistrationForm = () => {
     const handleRegistration = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
         setIsLoading(true); // Set loading state to true before request
-      
+
         try {
-          const registrationData = {
-            email,
-            name,
-            phoneNumber,
-            address,
-            password,
-          };
-      
-          const response = await axios.post(`${baseUrl}/register`, registrationData);
-          console.log(registrationData);
-          console.log('Registration successful:', response.data); // For debugging
-      
-          // Handle successful registration (e.g., redirect to login page)
-          navigate('/login'); // Redirect to the login page after successful registration
+            const registrationData = {
+                email,
+                name,
+                phoneNumber,
+                address,
+                password,
+            };
+
+            const response = await axios.post(`${baseUrl}/register`, registrationData);
+            console.log(registrationData);
+            console.log('Registration successful:', response.data); // For debugging
+            toast.success("Registration Successful")
+
+            // Handle successful registration (e.g., redirect to login page)
+            navigate('/login'); // Redirect to the login page after successful registration
         } catch (error) {
-          console.error('Error registering user:', error);
-          setErrorMessage(error.response?.data?.message || 'An error occurred while verifying OTP. Please try again.'); 
+            console.error('Error registering user:', error);
+            setErrorMessage(error.response?.data?.message || 'An error occurred while verifying OTP. Please try again.');
+            toast.error(error.response?.data?.message)
+
         } finally {
-          setIsLoading(false); // Set loading state to false after request completes
+            setIsLoading(false); // Set loading state to false after request completes
         }
-      };
+    };
 
     return (
         <>
@@ -188,6 +195,10 @@ const RegistrationForm = () => {
                     )}
                 </div>
             </div>
+
+            
+            <Toaster position='top-center' />
+
 
         </>
     );
